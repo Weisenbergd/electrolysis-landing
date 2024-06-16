@@ -21,11 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-x-hidden">
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} text-white`}>
         <header>
           <NavBar />
         </header>
-        <main className="min-h-[] px-2 md:px-6">{children}</main>
+        <main className="min-h-[]">{children}</main>
         <Footer />
       </body>
     </html>

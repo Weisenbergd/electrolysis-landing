@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+    --bar-height: 3px;
+    --hamburger-height: 22px;
+    --hamburger-width: 35px;
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+  }
+
+  .custom-style {
+    background: linear-gradient(to right, orange, white);
+    background-size: 1000%;
+    background-position: right;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: moves 5s forwards;
+    animation-delay: 1.5s;
+  }
+
+  @keyframes moves {
+    from {
+      background-position: right;
+    }
+    to {
+      background-position: left;
+    }
+  }
+  /*
+cursor-pointer  h-6 w-9 relative before:content-['']  
+before:w-full before:h-1 before:bg-red-200 before:absolute 
+before:top-0 before:right-0 after:content-[""] 
+after:w-full after:h-1 after:absolute after:right-0 
+after:bottom-0 after:bg-red-300
+
+ */
+  .hamburger::before,
+  .hamburger::after,
+  .hamburger span {
+    content: "";
+    height: var(--bar-height);
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.5s;
+    transform-origin: left;
+  }
+
+  .hamburger span {
+    top: 9px;
+  }
+
+  .hamburger::after {
+    top: inherit;
+    bottom: 0;
+  }
+
+  .x span {
+    opacity: 0;
+  }
+
+  .x::before {
+    width: var(--x-width);
+    transform: rotate(45deg) translateY(calc(var(--bar-height) / -2));
+  }
+
+  .x::after {
+    width: var(--x-width);
+    transform: rotate(-45deg) translateY(calc(var(--bar-height) / 2));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
